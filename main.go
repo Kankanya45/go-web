@@ -33,6 +33,9 @@ func main() {
 		tmpl.Execute(w, data)
 	})
 
+	fs := http.FileServer(http.Dir("assets/"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
+
 	//print tem
 	fmt.Println("Server is running on port 8080")
 
